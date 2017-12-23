@@ -1,0 +1,7 @@
+---
+  - hosts: loadbalancer
+    # get privilege
+    become: true
+    tasks:
+      - name: install nginx
+        apt: name=nginx state=present update_cache=yes

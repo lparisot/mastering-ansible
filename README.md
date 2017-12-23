@@ -56,6 +56,10 @@ docker-compose down
 docker-machine stop dev
 ```
 
+## Application
+
+We will install a 3-tier application with a loadbalancer, 2 web servers and a database.
+
 ## Playbooks
 
 Launch a particular playbook:
