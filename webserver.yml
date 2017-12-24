@@ -23,7 +23,7 @@
         notify: restart apache2
 
       - name: copy apache virtual host config
-        copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0755
+        copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0644
         notify: restart apache2
 
       - name: setup python virtualenv
