@@ -16,10 +16,11 @@
 - name: ensure mysql is started
   service: name=mysql state=started enabled=yes
 
-- name: create demo database
-  mysql_db: name=demo state=present
+- name: create {{ db_name }} database
+  mysql_db: name={{ db_name }} state=present
 
-- name: create demo user
+- name: create {{ db_user_name }} user
   # all privileges for user demo on database demo, can be accessed from anywhere
   # see DATABASE_URI in demo.wsgi
-  mysql_user: name=demo password=demo priv=demo.*:ALL host='%' state=present
+  mysql_user: name={{ db_user_name }} password={{ db_user_password }}
+              priv={{ db_name }}.*:ALL host='{{ db_user_host }}' state=present
