@@ -3,4 +3,5 @@
     # get privilege
     become: true
     roles:
-      - { role: mysql, db_name: demo, db_user_name: demo, db_user_password: demo, db_user_host: '%' }
+      - role: mysql
+        db_user_host: '%'
