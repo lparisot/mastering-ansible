@@ -1,6 +1,7 @@
 ---
   - hosts: loadbalancer
     become: true
+    gather_facts: false
     tasks:
       - name: verify nginx service
         command: service nginx status
@@ -9,6 +10,7 @@
 
   - hosts: webserver
     become: true
+    gather_facts: false
     tasks:
       - name: verify apache2 service
         command: service apache2 status
@@ -29,6 +31,7 @@
         lb01:
           ip: 192.168.99.100
           port: 8001
+    gather_facts: false
     tasks:
       - name: verify end-to-end index response
         uri: url=http://{{list_hostnames[item]['ip']}}:{{list_hostnames[item]['port']}} return_content=yes
@@ -57,6 +60,7 @@
         app02:
           ip: 192.168.99.100
           port: 8082
+    gather_facts: false
     tasks:
       - name: verify backend index response
         uri: url=http://{{list_hostnames[item]['ip']}}:{{list_hostnames[item]['port']}} return_content=yes

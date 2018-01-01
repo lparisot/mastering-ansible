@@ -2,5 +2,6 @@
   - hosts: control
     # get privilege
     become: true
+    gather_facts: false
     roles:
       - control

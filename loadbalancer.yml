@@ -2,5 +2,6 @@
   - hosts: loadbalancer
     # get privilege
     become: true
+    gather_facts: false
     roles:
       - nginx
