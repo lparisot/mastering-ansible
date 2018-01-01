@@ -2,6 +2,7 @@
   - hosts: webserver
     # get privilege
     become: true
+    gather_facts: false
     roles:
       - apache2
       - demo_app
