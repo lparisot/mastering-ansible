@@ -1,7 +1,7 @@
 ---
 # tasks file for demo_app
 - name: install web components
-  apt: name={{item}} state=present update_cache=yes
+  apt: name={{item}} state=present
   with_items:
     - python-pip
     - python-virtualenv
@@ -14,7 +14,7 @@
 - name: copy demo.wsgi
   template: src=demo.wsgi.j2 dest=/var/www/demo/demo.wsgi mode=0755
   notify: restart apache2
-  
+
 - name: copy apache virtual host config
   copy: src=demo/demo.conf dest=/etc/apache2/sites-available mode=0644
   notify: restart apache2
