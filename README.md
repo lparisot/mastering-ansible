@@ -71,3 +71,16 @@ Apply all playbooks, but limit to a particular host:
 ```
 $ ansible-playbook site.yml --limit app01
 ```
+
+Using tags, you can select parts of the configuration. To list all tags and where they applied, use:
+```
+$ ansible-playbook site.yml --list-tags
+```
+To use a particular tag, use:
+```
+$ ansible-playbook site.yml --tags "packages"
+```
+Or skip a particular tag, use:
+```
+$ ansible-playbook site.yml --skip-tags "packages"
+```

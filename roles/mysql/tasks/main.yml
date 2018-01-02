@@ -4,23 +4,29 @@
   apt: name={{item}} state=present
   with_items:
     - python-mysqldb
+  tags: [ 'packages' ]
 
 - name: install mysql-server
   apt: name=mysql-server state=present
+  tags: [ 'packages' ]
 
 - name: ensure mysql listening on all ports
   lineinfile: dest=/etc/mysql/my.cnf regexp=^bind-address
               line="bind-address = {{ ansible_eth0.ipv4.address }}"
   notify: restart mysql
+  tags: [ 'configure' ]
 
 - name: ensure mysql is started
   service: name=mysql state=started enabled=yes
+  tags: [ 'service' ]
 
 - name: create {{ db_name }} database
   mysql_db: name={{ db_name }} state=present
+  tags: [ 'configure' ]
 
 - name: create {{ db_user_name }} user
   # all privileges for user demo on database demo, can be accessed from anywhere
   # see DATABASE_URI in demo.wsgi
   mysql_user: name={{ db_user_name }} password={{ db_user_password }}
               priv={{ db_name }}.*:ALL host='{{ db_user_host }}' state=present
+  tags: [ 'configure' ]
