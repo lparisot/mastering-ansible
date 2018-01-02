@@ -13,6 +13,7 @@
 - name: get active sites
   shell: ls -1 /etc/nginx/sites-enabled
   register: active
+  changed_when: "{{ sites.keys() | sort }} != {{ active.stdout_lines | sort }}"
   tags: [ 'configure' ]
 
 - name: de-activate sites
