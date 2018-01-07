@@ -84,3 +84,27 @@ Or skip a particular tag, use:
 ```
 $ ansible-playbook site.yml --skip-tags "packages"
 ```
+
+### Troubleshooting
+
+To check code and see what changes will happen:
+```
+$ ansible-playbook site.yml --syntax-check
+$ ansible-playbook site.yml --check
+```
+
+To execute only a task or execute step by step:
+```
+$ ansible-playbook site.yml --list-tasks
+$ ansible-playbook site.yml --start-at-task "get active sites"
+$ ansible-playbook site.yml --step
+```
+
+To debug a particular variable, use the debug module:
+```
+- debug: var=active.stdout_lines
+```
+or for all variables:
+```
+- debug: var=vars
+```
